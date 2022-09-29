@@ -20,14 +20,32 @@ namespace UNFSocProgCompSys.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Register(RegisterViewModel registerViewModel, string returnUrl)
+       
+        public IActionResult Login()
         {
-            registerViewModel.ReturnUrl = returnUrl;
-            if(returnUrl == null)
-            {
-                returnUrl = Url.Content("Home");
-            }
+            return View();
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Login(LoginViewModel LoginValues)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var result = await _signInManager.PasswordSignInAsync(LoginValues.Email, LoginValues.Password, LoginViewModel);
+        //    }
+
+        //}
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Register(RegisterViewModel registerViewModel)
+        {
+       
             if(ModelState.IsValid)
             {
                 var regUser = new User { Email = registerViewModel.Email, UserName = registerViewModel.Username }; 
@@ -35,16 +53,12 @@ namespace UNFSocProgCompSys.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(regUser, isPersistent: false);
+                    return LocalRedirect("/Home");
                 }
                 ModelState.AddModelError("Password", "User could not be created.Password not unique enough");
             } 
             return View(registerViewModel);
         }
-        public async Task<ActionResult> Register(string returnUrl=null)
-        {
-            RegisterViewModel registeredViewModel = new RegisterViewModel();
-            registeredViewModel.ReturnUrl = returnUrl;
-            return View(registeredViewModel);
-        }
+ 
     }
 }

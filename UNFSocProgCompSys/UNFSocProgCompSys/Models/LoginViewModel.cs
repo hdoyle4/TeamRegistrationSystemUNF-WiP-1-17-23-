@@ -2,20 +2,16 @@
 
 namespace UNFSocProgCompSys.Models
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
         [Required]
-        [StringLength(25, ErrorMessage ="Password Can't be longer Than 25 characters or shorter than 6",MinimumLength =6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Display(Name ="Remember Me?")]
+        public bool RememberMe { get; set; }
 
-        public string ConfirmPassword { get; set; }
-
-        [Required]
-        public string Username { get; set; }
     }
 }
