@@ -26,10 +26,15 @@
                 <td width="20%">@competition.CompetitionDescription</td>
                 <td width="10%">@competition.CompetitionMaxTeamSize</td>
                 <td width="10%">
-                        <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID 
-                        class="btn btn-primary">
-                            View Information
-                        </a>
+                    <!--FIXME, only one should display depending on if the user is registered for the proigramming competitions-->
+                    <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID
+                    class="btn btn-primary">
+                        Register for Competition
+                    </a>
+                    <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID 
+                    class="btn btn-secondary">
+                        View Information
+                    </a>
                 </td>
             </tr>
         }

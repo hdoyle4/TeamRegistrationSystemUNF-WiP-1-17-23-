@@ -1,7 +1,7 @@
 ﻿@model Competition
 
 <div>
-    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-primary float-end">Return to list of competitions</a>
+    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-secondary float-end">Return to list of competitions</a>
     <h1>@Model.CompetitionName</h1>
 </div>
 <div>
@@ -21,5 +21,5 @@
 <div> <!--FIXME-->
     <a class="btn btn-primary">Create a new team</a>
     <a class="btn btn-primary">Find a existing team</a>
-    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-primary float-end">Unregister for programming competition</a>
+    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-danger float-end">Unregister for programming competition</a>
 </div>
