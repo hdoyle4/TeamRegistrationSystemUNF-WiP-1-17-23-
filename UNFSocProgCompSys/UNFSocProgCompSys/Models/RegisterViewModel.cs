@@ -14,7 +14,7 @@ namespace UNFSocProgCompSys.Models
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
-
+        public string? ReturnUrl { get; set; }
         [Required]
         public string Username { get; set; }
     }
