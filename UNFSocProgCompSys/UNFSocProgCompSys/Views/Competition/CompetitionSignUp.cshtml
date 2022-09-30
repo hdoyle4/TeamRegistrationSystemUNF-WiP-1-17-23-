@@ -11,6 +11,7 @@
             <th>Location</th>
             <th>Description</th>
             <th>Max Team Size</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,12 @@
                 <td width="16%">@competition.CompetitionLocation</td>
                 <td width="20%">@competition.CompetitionDescription</td>
                 <td width="10%">@competition.CompetitionMaxTeamSize</td>
+                <td width="10%">
+                        <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID 
+                        class="btn btn-primary">
+                            View Information
+                        </a>
+                </td>
             </tr>
         }
     </tbody>

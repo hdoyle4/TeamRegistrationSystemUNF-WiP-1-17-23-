@@ -21,9 +21,25 @@ namespace UNFSocProgCompSys.Controllers
         }
 
         //Page to view actions relating to a competition
-        public IActionResult CompetitionHome()
+        public IActionResult CompetitionHome(Guid? CompetitionID)
         {
-            return View();
-        }
-    }   // End of class CompetitionController
-}       // End of namespace UNFSocProgCompSys.Controllers
+            if(CompetitionID == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var CurrentCompetition = _db.Competitions.Find(CompetitionID);
+
+                if (CurrentCompetition == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return View(CurrentCompetition);
+                }
+            }
+        }//End of Competition Home
+    }    // End of class CompetitionController
+}        // End of namespace UNFSocProgCompSys.Controllers
