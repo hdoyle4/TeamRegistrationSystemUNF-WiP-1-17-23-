@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using UNFSocProgCompSys.Models;
 
 namespace UNFSocProgCompSys.Data
 {
@@ -8,8 +9,9 @@ namespace UNFSocProgCompSys.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-        
         }
+
+        public DbSet<Competition> Competitions { get; set; }
     }
 
 }
