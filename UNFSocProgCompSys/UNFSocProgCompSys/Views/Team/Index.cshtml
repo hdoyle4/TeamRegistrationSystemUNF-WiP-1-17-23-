@@ -1,0 +1,32 @@
+﻿@model TeamViewModel
+
+@{
+    ViewData["Title"] = "View all teams";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="panel panel-default todo-panel">
+    <div class="panel-heading">Team List</div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Team Name</td>
+                <td>Number of Members</td>
+            </tr>
+        </thead>
+
+        @foreach (var team in Model.Teams){
+            <tr>
+                <td>
+                    @team.Name
+                </td>
+                <td>
+                    @team.NumberOfMembers
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
