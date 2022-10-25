@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using UNFSocProgCompSys.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UNFSocProgCompSys.Controllers
 {
@@ -15,19 +16,50 @@ namespace UNFSocProgCompSys.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        
+        public IActionResult Login(string? returnUrl = null)
         {
-            return View();
+            LoginViewModel loginViewModel = new LoginViewModel();
+            loginViewModel.ReturnUrl = returnUrl;
+            return View(loginViewModel);
+       
         }
 
         [HttpPost]
-        public async Task<ActionResult> Register(RegisterViewModel registerViewModel, string returnUrl)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel LoginValues,string? returnUrl= null)
         {
-            registerViewModel.ReturnUrl = returnUrl;
-            if(returnUrl == null)
+            LoginValues.ReturnUrl = returnUrl;
+            returnUrl = returnUrl ?? Url.Content("~/");
+            if (ModelState.IsValid)
             {
-                returnUrl = Url.Content("Home");
+                var result = await _signInManager.PasswordSignInAsync(LoginValues.Username, LoginValues.Password, LoginValues.RememberMe,lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index","Home");
+                }
             }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Login attempt.");
+                return View(LoginValues);
+            }
+            return View(LoginValues);
+        }
+
+        public IActionResult Register(string returnUrl = null)
+        {
+            RegisterViewModel registerViewModel = new RegisterViewModel();
+            registerViewModel.ReturnUrl = returnUrl;
+            return View(registerViewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Register(RegisterViewModel registerViewModel, string? returnUrl = null)
+        {
+               
+            registerViewModel.ReturnUrl = returnUrl;
+            returnUrl = returnUrl ?? Url.Content("~/");
             if(ModelState.IsValid)
             {
                 var regUser = new User { Email = registerViewModel.Email, UserName = registerViewModel.Username }; 
@@ -35,16 +67,19 @@ namespace UNFSocProgCompSys.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(regUser, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
                 ModelState.AddModelError("Password", "User could not be created.Password not unique enough");
             } 
             return View(registerViewModel);
         }
-        public async Task<ActionResult> Register(string returnUrl=null)
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LogOff()
         {
-            RegisterViewModel registeredViewModel = new RegisterViewModel();
-            registeredViewModel.ReturnUrl = returnUrl;
-            return View(registeredViewModel);
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
