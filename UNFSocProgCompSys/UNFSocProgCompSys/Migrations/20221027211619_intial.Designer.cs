@@ -11,8 +11,8 @@ using UNFSocProgCompSys.Data;
 namespace UNFSocProgCompSys.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221025025229_Competitions")]
-    partial class Competitions
+    [Migration("20221027211619_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
