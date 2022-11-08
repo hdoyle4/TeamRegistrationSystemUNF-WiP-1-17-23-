@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'UnfSocProgComp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2C67DC0E0DC24FE4A257BB0D3919E4F7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD4CA7DCD2B6463DAA5CEE8D90A99445 }}
           package: .
