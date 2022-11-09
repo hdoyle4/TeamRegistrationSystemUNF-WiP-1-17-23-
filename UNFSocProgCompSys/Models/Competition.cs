@@ -25,7 +25,6 @@ namespace UNFSocProgCompSys.Models
 
         //Minimum team size?
 
-        [Required(ErrorMessage = "The competition needs to have a maximum team size.")]
-        public int CompetitionMaxTeamSize { get; set; }
+        public int CompetitionMaxTeamSize { get; set; } = 3;
     } //End of public class Competition
 }     //End of namespace UNFSoCProgCompSys
