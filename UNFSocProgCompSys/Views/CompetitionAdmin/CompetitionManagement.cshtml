@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Competition>
+
+<div>
+    <!--FIXME search-->
+    <a class="btn btn-secondary float-end">Search</a>
+    <h1>Current Competitions</h1>
+</div>
+<div>
+    <table class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Competition</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var competition in Model)
+            {
+                <tr>
+                    <td>
+                        <h3>@competition.CompetitionName</h3><br><br>
+
+                        <div class="float-end">
+                            <a asp-controller="CompetitionAdmin" asp-action="CompetitionEdit" 
+                                asp-route-CompetitionID=@competition.CompetitionID class="btn btn-success">Edit</a>
+                            <a asp-controller="CompetitionAdmin" asp-action="CompetitionRemove" 
+                                asp-route-CompetitionID=@competition.CompetitionID class="btn btn-danger">Remove</a>
+                        </div>
+                        @competition.CompetitionDescription
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <!--FIXME Download CSV-->
+    <a class="btn btn-secondary float-end">Download CSV</a>
+    <a asp-controller="CompetitionAdmin" asp-action="CompetitionCreate" class="btn btn-primary">Create</a>
+</div>

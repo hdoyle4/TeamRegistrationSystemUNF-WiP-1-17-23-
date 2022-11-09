@@ -6,9 +6,6 @@
         <tr>
             <th>Competition</th>
             <th>Date</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Location</th>
             <th>Description</th>
             <th>Max Team Size</th>
             <th></th>
@@ -18,22 +15,19 @@
         @foreach(var competition in Model)
         {
             <tr>
-                <td width="10%">@competition.CompetitionName</td>
-                <td width="8%">@competition.CompetitionDate.ToString("MM/dd/yyyy")</td>
-                <td width="8%">@competition.CompetitionStartTime.ToString("h:mm tt")</td>
-                <td width="8%">@competition.CompetitionEndTime.ToString("h:mm tt")</td>
-                <td width="16%">@competition.CompetitionLocation</td>
-                <td width="20%">@competition.CompetitionDescription</td>
+                <td width="26%">@competition.CompetitionName</td>
+                <td width="10%">@competition.CompetitionDate.ToString("MM/dd/yyyy")</td>
+                <td width="38%">@competition.CompetitionDescription</td>
                 <td width="10%">@competition.CompetitionMaxTeamSize</td>
-                <td width="10%">
+                <td width="16%">
                     <!--FIXME, only one should display depending on if the user is registered for the proigramming competitions-->
                     <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID
                     class="btn btn-primary">
-                        Register for Competition
+                        Register
                     </a>
                     <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID 
                     class="btn btn-secondary">
-                        View Information
+                        View
                     </a>
                 </td>
             </tr>
