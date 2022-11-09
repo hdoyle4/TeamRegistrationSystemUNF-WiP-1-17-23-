@@ -13,8 +13,10 @@ namespace UNFSocProgCompSys.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
         public string ConfirmPassword { get; set; }
         public string? ReturnUrl { get; set; }
+
         [Required]
         public string Username { get; set; }
     }
