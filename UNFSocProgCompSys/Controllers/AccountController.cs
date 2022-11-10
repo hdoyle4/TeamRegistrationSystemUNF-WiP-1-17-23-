@@ -87,5 +87,47 @@ namespace UNFSocProgCompSys.Controllers
         {
             return View(_userManager.Users);
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            IdentityUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    AddErrors(result);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "User Not Found");
+            }
+            return View("Index", _userManager.Users);
+        }
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+            {
+                ModelState.TryAddModelError("", error.Description);
+            }
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            IdentityUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
