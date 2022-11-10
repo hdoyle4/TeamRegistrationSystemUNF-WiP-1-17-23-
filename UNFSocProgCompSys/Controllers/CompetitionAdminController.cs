@@ -19,6 +19,7 @@ namespace UNFSocProgCompSys.Controllers
             IEnumerable<Competition> CompetitionList = _db.Competitions;
             return View(CompetitionList);
         }
+
         //Page to create a new competition (Admin)
         public IActionResult CompetitionCreate()
         {
