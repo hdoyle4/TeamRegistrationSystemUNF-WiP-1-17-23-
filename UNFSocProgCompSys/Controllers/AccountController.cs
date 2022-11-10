@@ -81,5 +81,11 @@ namespace UNFSocProgCompSys.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [AllowAnonymous]
+        public ViewResult Index()
+        {
+            return View(_userManager.Users);
+        }
     }
 }
