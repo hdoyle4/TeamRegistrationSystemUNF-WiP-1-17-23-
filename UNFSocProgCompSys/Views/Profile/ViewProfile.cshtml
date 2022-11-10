@@ -1,0 +1,27 @@
+﻿@model ProfileView;
+
+<div>
+    <p>FirstName: @Model.FirstName</p>
+</div>
+<div>
+    <p>LastName: @Model.LastName</p>
+</div>
+<div>
+    <p>Username: @Model.Username</p>
+</div>
+<div>
+    <p>Email: @Model.Email</p>
+</div>
+<div>
+    <p>Classes Taken: @Model.ClassesTaken</p>
+</div>
+<div>
+    <p>Programming Languages: @Model.ProgLang</p>
+</div>
+<div>
+    <p>Gender: @Model.Gender</p>
+</div>
+<div>
+    <p>School Attending: @Model.School</p>
+</div>
+<a asp-controller="profile" asp-action="EditProfile">Edit</a>

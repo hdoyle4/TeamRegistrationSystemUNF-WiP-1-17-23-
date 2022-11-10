@@ -14,10 +14,25 @@ namespace UNFSocProgCompSys.Models
         public string Password { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         public string? ReturnUrl { get; set; }
 
         [Required]
         public string Username { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string School { get; set; }
+        [Required]
+        public string Gender { get; set; }
+        [Required]
+        public string ProgLang { get; set; }
+        [Required]
+        public string ClassesTaken { get; set; }
     }
 }
