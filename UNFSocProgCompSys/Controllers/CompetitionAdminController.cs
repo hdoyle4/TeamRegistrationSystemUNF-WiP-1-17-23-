@@ -20,12 +20,30 @@ namespace UNFSocProgCompSys.Controllers
             return View(CompetitionList);
         }
 
-        //Page to create a new competition (Admin)
+        //Page to create a new competition (Admin), this is a GET action
         public IActionResult CompetitionCreate()
         {
             return View();
         }
-        //Page to edit an existing competition (Admin)
+
+        //POST action for page to create a new competition (Admin)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CompetitionCreate(Competition NewCompetition)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Competitions.Add(NewCompetition);
+                _db.SaveChanges();
+                return RedirectToAction("CompetitionManagement");
+            }
+            else
+            {
+                return View(NewCompetition);
+            }
+        }
+
+        //Page to edit an existing competition (Admin), this is a GET action
         public IActionResult CompetitionEdit(Guid? CompetitionID)
         {
             if (CompetitionID == null)
@@ -45,6 +63,23 @@ namespace UNFSocProgCompSys.Controllers
                     return View(CurrentCompetition);
                 }
             }
-        } //End of CompetitionEdit
+        }
+
+        //POST action for page to edit an existing competition (Admin)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CompetitionEdit(Competition ExistingCompetition)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Competitions.Update(ExistingCompetition);
+                _db.SaveChanges();
+                return RedirectToAction("CompetitionManagement");
+            }
+            else
+            {
+                return View(ExistingCompetition);
+            }
+        }
     }     //End of class CompetitionAdminController
 }         //End of namespace UNFSocProgCompSys.Controllers
