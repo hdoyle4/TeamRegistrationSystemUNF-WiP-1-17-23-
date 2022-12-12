@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IProfileServices, ProfileServices>();
 builder.Services.AddDbContext<ApplicationDbContext>(e =>
 e.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+//e.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
