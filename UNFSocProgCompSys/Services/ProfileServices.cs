@@ -28,14 +28,14 @@ namespace UNFSocProgCompSys.Services
            return await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-       public async Task<int> EditUserByIdAsync(string id,ProfileView ProfileViewEditedVals)
+       public async Task<bool> EditUserByIdAsync(string id,ProfileView ProfileViewEditedVals)
         {
            
             var User=await GetUserByIdAsync(id);
             
             if (User == null)
             {
-                return 0;
+                return false;
             }
             else
             {
@@ -46,11 +46,20 @@ namespace UNFSocProgCompSys.Services
                 User.ClassesTaken = ProfileViewEditedVals.ClassesTaken;
                 User.School = ProfileViewEditedVals.School;
                 User.UserName = ProfileViewEditedVals.Username;
+                User.NormalizedUserName = ProfileViewEditedVals.Username.ToUpper();
                 User.ProgLang = ProfileViewEditedVals.ProgLang;
             }
 
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-            return await _context.SaveChangesAsync();
+            return true;
         }
      
     }

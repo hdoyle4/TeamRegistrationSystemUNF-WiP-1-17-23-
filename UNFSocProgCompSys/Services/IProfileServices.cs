@@ -5,7 +5,7 @@ namespace UNFSocProgCompSys.Services
     public interface IProfileServices
     {
         Task<User?> GetUserByNameAsync(string username);
-
-        Task<int> EditUserByIdAsync(string id, ProfileView ProfileViewEditedVals);
+        Task<bool> EditUserByIdAsync(string id, ProfileView ProfileViewEditedVals);
+        Task<User?> GetUserByIdAsync(string id);
     }
 }

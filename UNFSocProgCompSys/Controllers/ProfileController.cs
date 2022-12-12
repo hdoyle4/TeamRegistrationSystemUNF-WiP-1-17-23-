@@ -16,9 +16,9 @@ namespace UNFSocProgCompSys.Controllers
 
         public async Task<IActionResult> ViewProfile()
         {
-            string? UserName = User?.Identity?.Name;
+            var UserId = User?.Claims.FirstOrDefault()?.Value;
             var ProfileViewModel = new ProfileView();
-            var UserProfileVals = await _ProfileServices.GetUserByNameAsync(UserName);
+            var UserProfileVals = await _ProfileServices.GetUserByIdAsync(UserId);
             
             ProfileViewModel.FirstName = UserProfileVals.FirstName;
             ProfileViewModel.LastName = UserProfileVals.LastName;
@@ -56,8 +56,19 @@ namespace UNFSocProgCompSys.Controllers
             //string UserName=User?.Identity?.Name;
             //var UserId = User?.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
             var UserId = User?.Claims.FirstOrDefault()?.Value;
-            var resultOfEdit = _ProfileServices.EditUserByIdAsync(UserId,ProfileValues);
-            return View(ProfileValues);
+
+            if(UserId == null)
+            {
+                return BadRequest("UserId could not be retrieved");
+            }
+            
+            var resultOfEdit =  await _ProfileServices.EditUserByIdAsync(UserId,ProfileValues);
+            
+            if(resultOfEdit == false)
+            {
+                return BadRequest("Edit of user profile has failed!");
+            }
+            return RedirectToAction("ViewProfile");
         }
 
      }
