@@ -12,6 +12,8 @@ namespace UNFSocProgCompSys.Data
         }
 
         public DbSet<Competition> Competitions { get; set; }
+
+        public DbSet<Team> Teams { get; set; } 
         public DbSet<User> Users { get; set; }
     }
 
