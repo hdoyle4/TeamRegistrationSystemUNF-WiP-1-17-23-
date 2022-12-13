@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IProfileServices, ProfileServices>();
+builder.Services.AddScoped<ITeamServices, TeamServices>();
 builder.Services.AddDbContext<ApplicationDbContext>(e =>
 //e.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 e.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
