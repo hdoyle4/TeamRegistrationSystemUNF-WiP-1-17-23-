@@ -81,5 +81,46 @@ namespace UNFSocProgCompSys.Controllers
                 return View(ExistingCompetition);
             }
         }
+
+        //Page to remove an existing competition (Admin), this is a GET action
+        public IActionResult CompetitionRemove(Guid? CompetitionID)
+        {
+            if (CompetitionID == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var CurrentCompetition = _db.Competitions.Find(CompetitionID);
+
+                if (CurrentCompetition == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return View(CurrentCompetition);
+                }
+            }
+        }
+
+        //POST action for page to remove an existing competition (Admin)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CompetitionRemovePost(Guid? CompetitionID)
+        {
+            var ExistingCompetition = _db.Competitions.Find(CompetitionID);
+
+            if (ExistingCompetition == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _db.Competitions.Remove(ExistingCompetition);
+                _db.SaveChanges();
+                return RedirectToAction("CompetitionManagement");
+            }
+        }
     }     //End of class CompetitionAdminController
 }         //End of namespace UNFSocProgCompSys.Controllers
