@@ -15,6 +15,8 @@ namespace UNFSocProgCompSys.Models
         //Stores the number of members in the team. Each team will have at least one member.
         public int NumberOfMembers { get; set; }
 
+        public bool LookingForMembers { get; set; }
+
         //Variable to store an array of users who are members of the team
         //public Users[] Members[] { get; set; }
 

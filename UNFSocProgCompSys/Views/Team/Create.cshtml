@@ -3,5 +3,26 @@
     ViewData["Title"] = "Create a new team";
 }
 <h1>@ViewData["Title"]</h1>
-<p>Enter a team name:</p>
-<input asp-for="Name" type="text" />
+<form asp-action="AddTeam" method="POST">
+    <div>
+        <label asp-for="Name">Enter a Team Name (No Profanity Please):</label>
+        <input asp-for="Name" />
+    </div>
+    <!--Below is a temporary input for num members, it will be removed once users are added.-->
+    <div>
+        <label asp-for="NumberOfMembers">Number Of Members</label>
+        <input asp-for="NumberOfMembers" type="number" />
+    </div>
+    <div>
+        <label asp-for="LookingForMembers">Team is Joinable (Only uncheck this if you are a solo team)</label>
+        <input asp-for="LookingForMembers" type="checkbox" checked />
+    </div>
+    <button type="submit">Create Team</button>
+</form>
+
+
+<!--
+//Insert code to validate team name for duplicate names or explicit words
+
+//Insert code to validate if logged in user is already part of a team, if they are, display an error message.
+-->

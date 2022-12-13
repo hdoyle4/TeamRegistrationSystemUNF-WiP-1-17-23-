@@ -3,9 +3,11 @@ using UNFSocProgCompSys.Data;
 using UNFSocProgCompSys.Services;
 using UNFSocProgCompSys.Models;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UNFSocProgCompSys.Controllers
 {
+    [Authorize]
     public class TeamController : Controller
     {
 
