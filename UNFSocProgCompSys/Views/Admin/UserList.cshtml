@@ -1,4 +1,4 @@
-﻿@model ProfileView;
+﻿@model EditUserViewModel;
 @{
     ViewBag.Title = "Student List";
     Layout = "_AdminLayout";
@@ -12,7 +12,7 @@
                 <td>Delete</td>
             </tr>
         </thead>
-     @foreach (var orders in Model.UserProfile)
+     @foreach (var orders in Model.Users)
      {
     <tr>
     <td><h4>@orders.FirstName</h4></td>
