@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using UNFSocProgCompSys.Data;
 using UNFSocProgCompSys.Models;
 
 namespace UNFSocProgCompSys.Controllers
 {
+    [Authorize]
     public class CompetitionController : Controller
     {
         private readonly ApplicationDbContext _db;
