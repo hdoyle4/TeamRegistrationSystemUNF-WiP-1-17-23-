@@ -1,40 +1,29 @@
-﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+﻿@model ProfileView;
 @{
-    ViewBag.Title = "User Accounts";
+    ViewBag.Title = "Student List";
     Layout = "_AdminLayout";
 }
-<div class="text-danger" asp-validation-summary="ModelOnly"></div>
-<table class="table table-condensed table-bordered">
+
+   <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Student Name</td>
+                <td>Email</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+     @foreach (var orders in Model.UserProfile)
+     {
     <tr>
-        <!--<th>ID</th>-->
-        <th>UserName</th>
-        <th>Email</th>
-        <!--<th>Password</th>-->
-    </tr>
- @if (Model.Count() > 0)
- {
-     foreach (var appUser in Model)
- {
-    <tr>
-        <!--<td>@appUser.Id</td>-->
-        <td>@appUser.UserName</td>
-        <td>@appUser.Email</td>
-        <!--<td>@appUser.PasswordHash</td>-->
-        <td>
-            @*<a class="btn btn-success" asp-controller="Admin" asp-action="UserEdit" asproute-id="@appUser.Id">Edit</a>*@
-            <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asproute-id="@appUser.Id">Delete</a>
-        </td>
-    </tr>
- }
-    
- }
- else
- {
-    <tr>
-        <td colspan="3" class="text-center">
-            No User Accounts
-        </td>
+    <td><h4>@orders.FirstName</h4></td>
+    <td>@orders.Email</td>
+    <td>@orders.Id</td>
+    <td><form method="post" asp-action="DeleteUser" asp-route-id="@orders.Id">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            </form></td>
     </tr>
     }
-</table>
+    </table>
+        
 
+      

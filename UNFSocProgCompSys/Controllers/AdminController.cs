@@ -14,7 +14,7 @@ namespace UNFSocProgCompSys.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UserList1()
+        public async Task<IActionResult> UserList()
         {
             var users = await _AdminService.GetUsers();
          
@@ -25,23 +25,20 @@ namespace UNFSocProgCompSys.Controllers
             return View(model);
         }
 
-        //[HttpGet]
-        //public IActionResult UserList()
-        //{
-        //    var users = userManager.Users;
-        //    return View(users);
-        //}
-
         public IActionResult Index()
         {
             return View();
         }
 
-        //[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var success = await _AdminService.DeleteUserById(id);
-            return View(UserList1);
+            if (success)
+            {
+                return RedirectToAction("UserList1");
+            }
+            return View("UserList1");
         }
 
         //[HttpPost]
