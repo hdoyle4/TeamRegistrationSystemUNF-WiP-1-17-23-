@@ -11,8 +11,8 @@ using UNFSocProgCompSys.Data;
 namespace UNFSocProgCompSys.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221110023306_UpdatedUserTable")]
-    partial class UpdatedUserTable
+    [Migration("20221213052320_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,10 @@ namespace UNFSocProgCompSys.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -130,6 +134,8 @@ namespace UNFSocProgCompSys.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -243,6 +249,37 @@ namespace UNFSocProgCompSys.Migrations
                     b.HasKey("CompetitionID");
 
                     b.ToTable("Competitions");
+                });
+
+            modelBuilder.Entity("UNFSocProgCompSys.Models.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("ClassesTaken")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProgLang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("School")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

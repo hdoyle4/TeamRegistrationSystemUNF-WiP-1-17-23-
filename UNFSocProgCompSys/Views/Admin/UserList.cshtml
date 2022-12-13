@@ -22,9 +22,7 @@
         <!--<td>@appUser.PasswordHash</td>-->
         <td>
             @*<a class="btn btn-success" asp-controller="Admin" asp-action="UserEdit" asproute-id="@appUser.Id">Edit</a>*@
-            <form method="post" asp-action="DeleteUser" asp-route-id="@appUser.Id">
-            <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asproute-id="@appUser.Id">Delete</a>
         </td>
     </tr>
  }
