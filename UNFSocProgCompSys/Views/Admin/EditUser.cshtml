@@ -1,4 +1,4 @@
-﻿
+﻿@model EditUserViewModel
 @{
     ViewBag.Title = "Edit User";
     Layout = "_AdminLayout";
@@ -6,4 +6,51 @@
 
 <h1>Edit User</h1>
 
+<form asp-controller="Admin" asp-action="EditUser" method="post">
+    <h4>Account Information</h4>
+     <div class="form-group">
+        <label asp-for="Username"></label>
+        <input asp-for="Username"/>
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <h4>Profile Information</h4>
+     <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName"/>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+      <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName"/>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="School"></label>
+        <input asp-for="School"/>
+        <span asp-validation-for="School" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender"></label>
+        <input asp-for="Gender"/>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ClassesTaken"></label>
+        <textarea asp-for="ClassesTaken"><</textarea>
+        <span asp-validation-for="ClassesTaken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProgLang"></label>
+        <textarea asp-for="ProgLang"><</textarea>
+        <span asp-validation-for="ProgLang" class="text-danger"></span>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a asp-action="Index" class="btn btn-default">Cancel</a>
+</form>
 

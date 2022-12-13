@@ -16,6 +16,7 @@ namespace UNFSocProgCompSys.Services
         public async Task<User[]> GetUsers()
         {
             return await _context.Users.Where(x => x.UserName != null).ToArrayAsync();
+            
         }
 
         public async Task<bool> DeleteUserById(string id)
@@ -26,9 +27,5 @@ namespace UNFSocProgCompSys.Services
             return true;
         }
 
-
-
-
-        
     }
 }

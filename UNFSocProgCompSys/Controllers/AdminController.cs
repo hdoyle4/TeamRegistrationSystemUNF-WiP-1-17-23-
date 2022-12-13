@@ -36,9 +36,9 @@ namespace UNFSocProgCompSys.Controllers
             var success = await _AdminService.DeleteUserById(id);
             if (success)
             {
-                return RedirectToAction("UserList1");
+                return RedirectToAction("UserList");
             }
-            return View("UserList1");
+            return View("UserList");
         }
 
         //[HttpPost]
