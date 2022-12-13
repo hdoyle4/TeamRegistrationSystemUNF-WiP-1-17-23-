@@ -12,7 +12,7 @@ using UNFSocProgCompSys.Data;
 namespace UNFSocProgCompSys.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221212002800_Initial")]
+    [Migration("20221213033720_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
