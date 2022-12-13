@@ -20,7 +20,11 @@ namespace UNFSocProgCompSys.Controllers
         {
             return View();
         }
-        [Authorize]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
