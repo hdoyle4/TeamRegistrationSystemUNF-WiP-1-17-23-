@@ -12,18 +12,13 @@
         <span asp-validation-for="CompetitionName" class="text-danger"></span>
     </div>
     <div>
-        <label asp-for="CompetitionDate">Date</label><br>
-        <input asp-for="CompetitionDate" type="date"><br>
-        <span asp-validation-for="CompetitionDate" class="text-danger"></span>
-    </div>
-    <div>
         <label asp-for="CompetitionStartTime">Start time</label><br>
-        <input asp-for="CompetitionStartTime" type="time"><br>
+        <input asp-for="CompetitionStartTime" type="datetime-local"><br>
         <span asp-validation-for="CompetitionStartTime" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="CompetitionEndTime">End time</label><br>
-        <input asp-for="CompetitionEndTime" type="time"><br>
+        <input asp-for="CompetitionEndTime" type="datetime-local"><br>
         <span asp-validation-for="CompetitionEndTime" class="text-danger"></span>
     </div>
     <div> <!--FIXME, location is not nullable in the database, need to adjust it somehow-->

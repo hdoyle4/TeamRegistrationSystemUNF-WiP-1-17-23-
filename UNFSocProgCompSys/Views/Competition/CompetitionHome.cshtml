@@ -6,8 +6,20 @@
 </div>
 <div>
     <h5>Date and time:</h5>
-    <p>@Model.CompetitionDate.ToString("MM/dd/yyyy") from @Model.CompetitionStartTime.ToString("h:mm tt") to 
-        @Model.CompetitionEndTime.ToString("h:mm tt").</p>
+    @if (Model.CompetitionStartTime.Date == Model.CompetitionEndTime.Date)
+    {
+        <p>@Model.CompetitionStartTime.ToString("MM/dd/yyyy") from @Model.CompetitionStartTime.ToString("h:mm tt") to 
+            @Model.CompetitionEndTime.ToString("h:mm tt")
+        </p>
+    }
+    else
+    {
+        <p>
+            @Model.CompetitionStartTime.ToString("MM/dd/yyyy") at @Model.CompetitionStartTime.ToString("h:mm tt") to
+            @Model.CompetitionEndTime.ToString("MM/dd/yyyy") at @Model.CompetitionEndTime.ToString("h:mm tt") 
+        </p>
+    }
+
 
     <h5>Location:</h5>
     <p>@Model.CompetitionLocation</p>

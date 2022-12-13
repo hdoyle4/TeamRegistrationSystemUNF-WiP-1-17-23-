@@ -14,11 +14,11 @@
     <tbody>
         @foreach(var competition in Model)
         {
-            @if (competition.CompetitionDate >= DateTime.Today)
+            @if (competition.CompetitionStartTime >= DateTime.Now)
             {
                 <tr>
                     <td width="26%">@competition.CompetitionName</td>
-                    <td width="10%">@competition.CompetitionDate.ToString("MM/dd/yyyy")</td>
+                    <td width="10%">@competition.CompetitionStartTime.ToString("MM/dd/yyyy")</td>
                     <td width="38%">@competition.CompetitionDescription</td>
                     <td width="10%">@competition.CompetitionMaxTeamSize</td>
                     <td width="16%">

@@ -10,9 +10,6 @@ namespace UNFSocProgCompSys.Models
         [Required(ErrorMessage ="The competition needs to have a name.")]
         public string CompetitionName { get; set; }
 
-        [Required(ErrorMessage = "The competition needs to have a date.")]
-        public DateTime CompetitionDate { get; set; }
-
         [Required(ErrorMessage = "The competition needs to have a start time.")]
         public DateTime CompetitionStartTime { get; set; }
 
