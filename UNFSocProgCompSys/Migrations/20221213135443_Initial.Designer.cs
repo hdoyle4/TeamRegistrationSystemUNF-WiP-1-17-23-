@@ -11,8 +11,8 @@ using UNFSocProgCompSys.Data;
 namespace UNFSocProgCompSys.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221213122441_editview")]
-    partial class editview
+    [Migration("20221213135443_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
