@@ -5,7 +5,7 @@ using UNFSocProgCompSys.Models;
 
 namespace UNFSocProgCompSys.Controllers
 {   
-    [Authorize]
+   
     public class CompetitionAdminController : Controller
     {
         private readonly ApplicationDbContext _db;

@@ -9,7 +9,7 @@
             <tr>
                 <td>Student Name</td>
                 <td>Email</td>
-                <td>Delete</td>
+                <td>Delete OR Edit</td>
             </tr>
         </thead>
      @foreach (var orders in Model.Users)
@@ -17,7 +17,6 @@
     <tr>
     <td><h4>@orders.FirstName</h4></td>
     <td>@orders.Email</td>
-    <td>@orders.Id</td>
     <td>
         <a class="btn btn-success" asp-controller="admin" asp-action="EditUser" asp-route-id="@orders.Id">Edit</a>
         <form method="post" asp-action="DeleteUser" asp-route-id="@orders.Id">
