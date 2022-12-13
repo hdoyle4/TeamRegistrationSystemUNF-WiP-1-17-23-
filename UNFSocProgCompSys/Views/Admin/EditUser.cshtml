@@ -1,8 +1,13 @@
-﻿@model EditUserViewModel;
+﻿@model EditUserViewModel
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "_AdminLayout";
+}
 
-<form asp-controller="Profile" asp-action="EditProfile" method="post">
+<h1>Edit User</h1>
+
+<form asp-controller="Admin" asp-action="EditUser" method="post">
     <h4>Account Information</h4>
-    
      <div class="form-group">
         <label asp-for="Username"></label>
         <input asp-for="Username"/>
@@ -13,6 +18,7 @@
         <input asp-for="Email"/>
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+
     <h4>Profile Information</h4>
      <div class="form-group">
         <label asp-for="FirstName"></label>
@@ -44,5 +50,7 @@
         <textarea asp-for="ProgLang"><</textarea>
         <span asp-validation-for="ProgLang" class="text-danger"></span>
     </div>
-    <input type = "submit"/>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a asp-action="Index" class="btn btn-default">Cancel</a>
 </form>
+
