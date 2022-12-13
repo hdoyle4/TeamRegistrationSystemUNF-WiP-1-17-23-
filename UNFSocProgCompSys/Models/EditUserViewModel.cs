@@ -4,6 +4,7 @@ namespace UNFSocProgCompSys.Models
 {
     public class EditUserViewModel
     {
+
         [Required]
         public string Username { get; set; }
         [Required]
@@ -23,5 +24,6 @@ namespace UNFSocProgCompSys.Models
         public string Email { get; set; }
 
         public User[] UserProfile { get; set; }
+
     }
 }

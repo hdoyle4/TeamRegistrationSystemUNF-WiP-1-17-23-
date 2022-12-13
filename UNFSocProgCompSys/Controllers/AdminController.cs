@@ -41,32 +41,40 @@ namespace UNFSocProgCompSys.Controllers
             return View("UserList");
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> DeleteUser(string id)
-        //{
-        //    var user = await userManager.FindByIdAsync(id);
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = new EditUserViewModel();
+            var UserProfileVals = await _AdminService.GetUserByIdAsync(id);
+            
+            user.FirstName = UserProfileVals.FirstName;
+            user.LastName = UserProfileVals.LastName;
+            user.Email = UserProfileVals.Email;
+            user.Gender = UserProfileVals.Gender;
+            user.ClassesTaken = UserProfileVals.ClassesTaken;
+            user.School = UserProfileVals.School;
+            user.Username = UserProfileVals.UserName;
+            user.ProgLang = UserProfileVals.ProgLang;
 
-        //    if (user == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
-        //        return View("UserList");
-        //    }
-        //    else
-        //    {
-        //        var result = await userManager.DeleteAsync(user);
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel userEdit)
+        {
+            var UserId = User?.Claims.FirstOrDefault()?.Value;
 
-        //        if (result.Succeeded)
-        //        {
-        //            return RedirectToAction("UserList");
-        //        }
+            if (UserId == null)
+            {
+                return BadRequest("UserId could not be retrieved");
+            }
 
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
+            var resultOfEdit = await _AdminService.EditUserByIdAsync(UserId, userEdit);
 
-        //        return View("UserList");
-        //    }
-        //}
+            if (resultOfEdit == false)
+            {
+                return BadRequest("Edit of user profile has failed!");
+            }
+            return RedirectToAction("ViewProfile");
+        }
+
     }
 }
