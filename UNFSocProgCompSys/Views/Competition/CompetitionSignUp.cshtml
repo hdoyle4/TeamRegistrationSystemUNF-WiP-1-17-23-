@@ -14,23 +14,26 @@
     <tbody>
         @foreach(var competition in Model)
         {
-            <tr>
-                <td width="26%">@competition.CompetitionName</td>
-                <td width="10%">@competition.CompetitionDate.ToString("MM/dd/yyyy")</td>
-                <td width="38%">@competition.CompetitionDescription</td>
-                <td width="10%">@competition.CompetitionMaxTeamSize</td>
-                <td width="16%">
-                    <!--FIXME, only one should display depending on if the user is registered for the proigramming competitions-->
-                    <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID
-                    class="btn btn-primary centerIL">
-                        Register
-                    </a>
-                    <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID 
-                    class="btn btn-secondary centerIL">
-                        View
-                    </a>
-                </td>
-            </tr>
+            @if (competition.CompetitionDate >= DateTime.Today)
+            {
+                <tr>
+                    <td width="26%">@competition.CompetitionName</td>
+                    <td width="10%">@competition.CompetitionDate.ToString("MM/dd/yyyy")</td>
+                    <td width="38%">@competition.CompetitionDescription</td>
+                    <td width="10%">@competition.CompetitionMaxTeamSize</td>
+                    <td width="16%">
+                        <!--FIXME, only one should display depending on if the user is registered for the proigramming competitions-->
+                        <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID
+                        class="btn btn-primary centerIL">
+                            Register
+                        </a>
+                        <a asp-controller="Competition" asp-action="CompetitionHome" asp-route-CompetitionID=@competition.CompetitionID 
+                        class="btn btn-secondary centerIL">
+                            View
+                        </a>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
