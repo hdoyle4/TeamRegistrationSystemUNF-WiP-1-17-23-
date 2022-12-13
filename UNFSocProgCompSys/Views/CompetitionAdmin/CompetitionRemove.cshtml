@@ -12,16 +12,12 @@
         <input asp-for="CompetitionName" type="text" size="30" disabled>
     </div>
     <div>
-        <label asp-for="CompetitionDate">Date</label><br>
-        <input asp-for="CompetitionDate" type="date" disabled>
-    </div>
-    <div>
         <label asp-for="CompetitionStartTime">Start time</label><br>
-        <input asp-for="CompetitionStartTime" type="time" disabled>
+        <input asp-for="CompetitionStartTime" type="datetime-local" disabled>
     </div>
     <div>
         <label asp-for="CompetitionEndTime">End time</label><br>
-        <input asp-for="CompetitionEndTime" type="time" disabled>
+        <input asp-for="CompetitionEndTime" type="datetime-local" disabled>
     </div>
     <div>
         <label asp-for="CompetitionLocation">Location if known</label><br>
