@@ -18,9 +18,9 @@ namespace UNFSocProgCompSys.Controllers
         {
             var users = await _AdminService.GetUsers();
          
-            var model = new ProfileView()
+            var model = new EditUserViewModel()
             {
-                UserProfile = users
+                Users = users
             };
             return View(model);
         }
@@ -57,23 +57,18 @@ namespace UNFSocProgCompSys.Controllers
 
             return View(user);
         }
+        
         [HttpPost]
-        public async Task<IActionResult> EditUser(EditUserViewModel userEdit)
+        public async Task<IActionResult> EditUser(string id,EditUserViewModel userEdit)
         {
-            var UserId = User?.Claims.FirstOrDefault()?.Value;
 
-            if (UserId == null)
-            {
-                return BadRequest("UserId could not be retrieved");
-            }
-
-            var resultOfEdit = await _AdminService.EditUserByIdAsync(UserId, userEdit);
+            var resultOfEdit = await _AdminService.EditUserByIdAsync(id,userEdit);
 
             if (resultOfEdit == false)
             {
                 return BadRequest("Edit of user profile has failed!");
             }
-            return RedirectToAction("ViewProfile");
+            return RedirectToAction("UserList");
         }
 
     }

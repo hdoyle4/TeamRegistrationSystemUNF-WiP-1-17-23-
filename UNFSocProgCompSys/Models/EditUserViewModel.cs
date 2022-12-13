@@ -23,7 +23,7 @@ namespace UNFSocProgCompSys.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        public User[] UserProfile { get; set; }
+        public User[] Users { get; set; }
 
     }
 }

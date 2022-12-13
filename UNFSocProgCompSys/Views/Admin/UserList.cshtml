@@ -19,7 +19,7 @@
     <td>@orders.Email</td>
     <td>@orders.Id</td>
     <td>
-        <a class="btn btn-success" asp-controller="admin" asp-action="EditUser" asproute-id="@orders.Id">Edit</a>
+        <a class="btn btn-success" asp-controller="admin" asp-action="EditUser" asp-route-id="@orders.Id">Edit</a>
         <form method="post" asp-action="DeleteUser" asp-route-id="@orders.Id">
             <button type="submit" class="btn btn-danger">Delete</button>
             </form></td>

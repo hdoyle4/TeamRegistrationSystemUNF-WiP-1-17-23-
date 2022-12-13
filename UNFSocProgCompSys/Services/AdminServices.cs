@@ -23,10 +23,10 @@ namespace UNFSocProgCompSys.Services
 
             return await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
         }
-        public async Task<bool> EditUserByIdAsync(string id, EditUserViewModel user)
+        public async Task<bool> EditUserByIdAsync(string id,EditUserViewModel user)
         {
 
-            var User = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var User =await GetUserByIdAsync(id);
 
             if (User == null)
             {
@@ -34,6 +34,7 @@ namespace UNFSocProgCompSys.Services
             }
             else
             {
+             
                 User.FirstName = user.FirstName;
                 User.LastName = user.LastName;
                 User.Email = user.Email;
@@ -59,10 +60,10 @@ namespace UNFSocProgCompSys.Services
 
         public async Task<bool> DeleteUserById(string id)
         {
-           var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
            _context.Users.Remove(user);
-           _context.SaveChangesAsync();
-            return true;
+           await _context.SaveChangesAsync();
+           return true;
         }
 
     }

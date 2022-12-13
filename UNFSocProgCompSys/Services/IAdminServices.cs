@@ -8,7 +8,7 @@ namespace UNFSocProgCompSys.Services
 
         Task<bool> DeleteUserById(string id);
 
-        Task<bool> EditUserByIdAsync(string id, EditUserViewModel user);
+        Task<bool> EditUserByIdAsync(string id,EditUserViewModel user);
         Task<User?> GetUserByIdAsync(string id);
     }
 }
