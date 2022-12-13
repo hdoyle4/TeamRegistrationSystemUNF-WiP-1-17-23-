@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace UNFSocProgCompSys.Models
 {
     public class User : IdentityUser
-    {
+    { 
+    
         [Required]
         public string FirstName { get; set; }
         [Required]

@@ -13,6 +13,8 @@
             <tr>
                 <td>Team Name</td>
                 <td>Number of Members</td>
+                <td>Is Joinable</td>
+                <td>View Team Information</td>
             </tr>
         </thead>
 
@@ -23,6 +25,12 @@
                 </td>
                 <td>
                     @team.NumberOfMembers
+                </td>
+                <td>
+                    @team.LookingForMembers
+                </td>
+                <td>
+                    <button>Team Info</button>
                 </td>
             </tr>
         }

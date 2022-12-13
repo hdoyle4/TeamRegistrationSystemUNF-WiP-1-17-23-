@@ -16,51 +16,59 @@ namespace UNFSocProgCompSys.Controllers
 
         public async Task<IActionResult> ViewProfile()
         {
-            string? user = User?.Identity?.Name;
-            var model = new ProfileView();
-            var UserProfile = await _ProfileServices.GetProfile(user);
-
-           foreach (var UserAtr in UserProfile) {
-                model.FirstName=UserAtr.FirstName;
-                model.LastName=UserAtr.LastName;
-                model.Email=UserAtr.Email;
-                model.Gender=UserAtr.Gender;
-                model.ClassesTaken=UserAtr.ClassesTaken;
-                model.School=UserAtr.School;
-                model.Username = UserAtr.UserName;
-                model.ProgLang=UserAtr.ProgLang;
-                model.Password = UserAtr.PasswordHash;
-            }
-
-          return View(model);
+            var UserId = User?.Claims.FirstOrDefault()?.Value;
+            var ProfileViewModel = new ProfileView();
+            var UserProfileVals = await _ProfileServices.GetUserByIdAsync(UserId);
+            
+            ProfileViewModel.FirstName = UserProfileVals.FirstName;
+            ProfileViewModel.LastName = UserProfileVals.LastName;
+            ProfileViewModel.Email = UserProfileVals.Email;
+            ProfileViewModel.Gender = UserProfileVals.Gender;
+            ProfileViewModel.ClassesTaken = UserProfileVals.ClassesTaken;
+            ProfileViewModel.School = UserProfileVals.School;
+            ProfileViewModel.Username = UserProfileVals.UserName;
+            ProfileViewModel.ProgLang = UserProfileVals.ProgLang;
+            
+            return View(ProfileViewModel);
         }
 
         public async Task<IActionResult>EditProfile()
         {
-            string? user = User?.Identity?.Name;
-            var model= new ProfileView();
-            var UserProfile = await _ProfileServices.GetProfile(user);
-           
-            foreach (var UserAtr in UserProfile)
-            {
-                model.FirstName = UserAtr.FirstName;
-                model.LastName = UserAtr.LastName;
-                model.Email = UserAtr.Email;
-                model.Gender = UserAtr.Gender;
-                model.ClassesTaken = UserAtr.ClassesTaken;
-                model.School = UserAtr.School;
-                model.Username = UserAtr.UserName;
-                model.ProgLang = UserAtr.ProgLang;
-                model.Password = UserAtr.PasswordHash;
-            }
+            string? UserName = User?.Identity?.Name;
+            var ProfileViewModel= new ProfileView();
+            var UserProfileVals = await _ProfileServices.GetUserByNameAsync(UserName);
 
-            return View(model);
+            ProfileViewModel.FirstName = UserProfileVals.FirstName;
+            ProfileViewModel.LastName = UserProfileVals.LastName;
+            ProfileViewModel.Email = UserProfileVals.Email;
+            ProfileViewModel.Gender = UserProfileVals.Gender;
+            ProfileViewModel.ClassesTaken = UserProfileVals.ClassesTaken;
+            ProfileViewModel.School = UserProfileVals.School;
+            ProfileViewModel.Username = UserProfileVals.UserName;
+            ProfileViewModel.ProgLang = UserProfileVals.ProgLang;
+
+            return View(ProfileViewModel);
         }
         
         [HttpPost]
         public async Task<IActionResult> EditProfile(ProfileView ProfileValues)
         {
-            return View(ProfileValues);
+            //string UserName=User?.Identity?.Name;
+            //var UserId = User?.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
+            var UserId = User?.Claims.FirstOrDefault()?.Value;
+
+            if(UserId == null)
+            {
+                return BadRequest("UserId could not be retrieved");
+            }
+            
+            var resultOfEdit =  await _ProfileServices.EditUserByIdAsync(UserId,ProfileValues);
+            
+            if(resultOfEdit == false)
+            {
+                return BadRequest("Edit of user profile has failed!");
+            }
+            return RedirectToAction("ViewProfile");
         }
 
      }

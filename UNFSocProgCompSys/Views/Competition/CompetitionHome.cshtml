@@ -1,7 +1,7 @@
 ﻿@model Competition
 
 <div>
-    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-secondary float-end">Return to list of competitions</a>
+    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-secondary float-end">Return to list</a>
     <h1>@Model.CompetitionName</h1>
 </div>
 <div>
@@ -18,8 +18,8 @@
     <h5>Maximum team size:</h5>
     <p>@Model.CompetitionMaxTeamSize</p>
 </div>
-<div> <!--FIXME-->
-    <a class="btn btn-primary">Create a new team</a>
-    <a class="btn btn-primary">Find a existing team</a>
-    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-danger float-end">Unregister for programming competition</a>
+<div> <!--FIXME creatign a new team and finding existing team, also the unregister button needs to unregister the student-->
+    <a class="btn btn-primary">Create new team</a>
+    <a class="btn btn-primary">Find existing team</a>
+    <a asp-controller="Competition" asp-action="CompetitionSignUp" class="btn btn-danger float-end">Unregister</a>
 </div>

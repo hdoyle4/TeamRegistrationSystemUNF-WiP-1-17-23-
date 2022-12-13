@@ -1,0 +1,42 @@
+﻿@model Competition
+
+<div>
+    <h1>Remove Competition</h1>
+</div>
+
+<!--Form for removing a competition-->
+<form method="post" asp-action="CompetitionRemovePost">
+    <input asp-for="CompetitionID" hidden></input>
+    <div>
+        <label asp-for="CompetitionName">Name</label><br>
+        <input asp-for="CompetitionName" type="text" size="30" disabled>
+    </div>
+    <div>
+        <label asp-for="CompetitionDate">Date</label><br>
+        <input asp-for="CompetitionDate" type="date" disabled>
+    </div>
+    <div>
+        <label asp-for="CompetitionStartTime">Start time</label><br>
+        <input asp-for="CompetitionStartTime" type="time" disabled>
+    </div>
+    <div>
+        <label asp-for="CompetitionEndTime">End time</label><br>
+        <input asp-for="CompetitionEndTime" type="time" disabled>
+    </div>
+    <div>
+        <label asp-for="CompetitionLocation">Location if known</label><br>
+        <input asp-for="CompetitionLocation" type="text" size="30" disabled>
+    </div>
+    <div>
+        <label asp-for="CompetitionDescription">Description</label><br>
+        <textarea asp-for="CompetitionDescription" rows="5" cols="100" disabled></textarea>
+    </div>
+    <div>
+        <label asp-for="CompetitionMaxTeamSize">Maximum team size</label><br>
+        <input asp-for="CompetitionMaxTeamSize" type="number" min="1" step="1" max="99" value="3" disabled>
+    </div><br>
+    <div>
+        <input type="submit" value="Remove" class="btn btn-danger">
+        <a asp-controller="CompetitionAdmin" asp-action="CompetitionManagement" class="btn btn-secondary">Back</a>
+    </div>
+</form>
