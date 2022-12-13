@@ -38,10 +38,10 @@ namespace UNFSocProgCompSys.Controllers
                 {
                     return RedirectToAction("Index","Home");
                 }
+                ModelState.AddModelError("Password", "Invalid Login attempt.");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Invalid Login attempt.");
                 return View(LoginValues);
             }
             return View(LoginValues);
@@ -62,7 +62,16 @@ namespace UNFSocProgCompSys.Controllers
             returnUrl = returnUrl ?? Url.Content("~/");
             if(ModelState.IsValid)
             {
-                var regUser = new User { Email = registerViewModel.Email, UserName = registerViewModel.Username }; 
+                var regUser = new User { 
+                    Email = registerViewModel.Email, 
+                    UserName = registerViewModel.Username,
+                    FirstName = registerViewModel.FirstName,
+                    LastName = registerViewModel.LastName,
+                    School = registerViewModel.School,
+                    Gender = registerViewModel.Gender,
+                    ProgLang = registerViewModel.ProgLang,
+                    ClassesTaken = registerViewModel.ClassesTaken,
+                }; 
                 var result = await _userManager.CreateAsync(regUser,registerViewModel.Password);
                 if (result.Succeeded)
                 {
